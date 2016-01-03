@@ -13,6 +13,35 @@ public class Solution {
     //典型的二分查找
     public int searchInsert(int[] nums, int target) {
         int len = nums.length;
+        //如果没有下面这个if-else语句，下面的二分查找就有问题了，要修改为
+        //如果用left<right 以及right = mid就不用right=len - 1，而用right = len
+        //如果用left<=right 以及right = mid - 1就用right=len - 1
+        // if(target < nums[0]) {
+        //     return 0;
+        // } else if(target > nums[len - 1]) {
+        //     return len;
+        // }
+        int left = 0;
+        int right = len;
+        int mid;
+        while(left < right) {
+            mid = left + (right - left) / 2;
+            if(nums[mid] > target) {
+                right = mid;
+            } else if(nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return left;
+    }
+}
+/*
+public class Solution {
+    //典型的二分查找
+    public int searchInsert(int[] nums, int target) {
+        int len = nums.length;
         if(target < nums[0]) {
             return 0;
         } else if(target > nums[len - 1]) {
@@ -33,7 +62,6 @@ public class Solution {
         }
         return left;
     }
-	/*
 	public class Solution {
     //典型的二分查找
     public int searchInsert(int[] nums, int target) {
@@ -59,5 +87,5 @@ public class Solution {
         return left;
     }
 }
-*/
 }
+*/
