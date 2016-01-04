@@ -35,7 +35,7 @@ public class Solution {
         //     System.out.println("b--->" + i + " " + b[i]);
         // }
         int left = 0;
-        //right -= 1;//如果用left<right 以及right = mid就不用right=len - 1
+        //right -= 1;//如果用left<right 以及right = mid就不用right=len - 1，用right = len
         // int right = len - 1;因为b.length一直都是之前设定的len，所以不能用right = len - 1来做，要传入非0 的元素的长度
         int mid = left + (right - left) / 2;
         while(left < right) {
