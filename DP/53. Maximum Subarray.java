@@ -27,4 +27,18 @@ public class Solution {
         }
         return max;
     }
+	public int maxSubArray(int[] nums) {
+		int maxSum = 0;
+		int thisSum = 0;
+		for(int i = 0; i < nums.length; i++) {
+			thisSum += nums[i];
+			if(thisSum < 0) {
+				thisSum = 0;
+			}
+			if(thisSum > maxSum) {
+				maxSum = thisSum;
+			}
+		}
+		return maxSum;
+	}
 }

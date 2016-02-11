@@ -86,3 +86,68 @@ public class Solution {
         }
     }
 }
+
+bfs
+public int numIslands(char[][] grid) {
+        if(grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        
+        int size1 = grid.length;
+        int size2 = grid[0].length;
+        int ans = 0;
+        Queue<Pair> queue = new LinkedList<Pair>();
+        for(int i = 0; i < size1; i++) {
+             for(int j = 0; j < size2; j++) {
+                 if(grid[i][j] != '1') {
+                    continue;
+                } else {
+                    ans++;
+                    Pair pair = new Pair(i, j);
+                    queue.offer(pair);
+                    grid[pair.getX()][pair.getY()] = '2';
+                    while(!queue.isEmpty()) {
+                        Pair p = queue.poll();
+                        //不能在这里赋值，不然会重复放到队列里，如[[1,1,1,0],[1,1,0,0],[0,0,1,0],[0,0,0,0]]这种情况时，会把(1, 1)这个位置的元素放到队列里两次
+                        if(p.getX() - 1 >= 0 && grid[p.getX() - 1][p.getY()] == '1') {
+                            queue.offer(new Pair(p.getX() - 1, p.getY()));
+                            grid[p.getX() - 1][p.getY()] = '2';//一定要先赋值，不能后赋值
+                        }
+                        if(p.getX() + 1 < size1 && grid[p.getX() + 1][p.getY()] == '1') {
+                            queue.offer(new Pair(p.getX() + 1, p.getY()));
+                            grid[p.getX() + 1][p.getY()] = '2';
+                        }
+                        if(p.getY() - 1 >= 0 && grid[p.getX()][p.getY() - 1] == '1') {
+                            queue.offer(new Pair(p.getX(), p.getY() - 1));
+                            grid[p.getX()][p.getY() - 1] = '2';
+                        }
+                        if(p.getY() + 1 < size2 && grid[p.getX()][p.getY() + 1] == '1') {
+                            queue.offer(new Pair(p.getX(), p.getY() + 1));
+                            grid[p.getX()][p.getY() + 1] = '2';
+                        }
+                    }
+                }
+             }
+        }
+        return ans;
+    }
+    class Pair {
+        private int x;
+        private int y;
+        public Pair(int a, int b) {
+            x = a;
+            y = b;
+        }
+        public void setX(int a) {
+            this.x = a;
+        }
+        public void setY(int b) {
+            this.y = b;
+        }
+        public int getX() {
+            return x;
+        }
+        public int getY() {
+            return y;
+        }
+    }

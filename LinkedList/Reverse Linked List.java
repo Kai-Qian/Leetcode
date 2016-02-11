@@ -16,7 +16,7 @@ public class Solution {
         // reverseList(head.next).next = head;
         // return head;
         if (head == null || head.next == null) return head;
-        ListNode temp = reverseList(head.next);
+        ListNode temp = reverseList(head.next);//temp就是reverse之后的linked list的新head
         head.next.next = head;
         head.next = null;
         return temp;
