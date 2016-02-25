@@ -11,7 +11,7 @@ public class Solution {
             arr[0] = 1;
             arr[1] = 2;
             for (int i = 2; i < n ; i++) {
-                arr[i] = arr[i - 1] + arr[i - 2];
+                arr[i] = arr[i - 1] + arr[i - 2];//爬到第三阶的方式就是爬到第二阶的方式加上爬到第一阶的方式，因为爬到第二阶了只用再爬一下，爬到第一阶了只用再爬两阶
             }
             return arr[arr.length - 1];
         } else if (n == 1) {
